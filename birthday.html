@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise pour Lina</title>
+    <style>
+        /* Styles de base */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #f9e6e6;
+        }
+
+        /* Papier cadeau */
+        .gift-wrap {
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                #d9455f,
+                #d9455f 10px,
+                #f6b3b7 10px,
+                #f6b3b7 20px
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Ruban horizontal et vertical */
+        .ribbon-horizontal, .ribbon-vertical {
+            position: absolute;
+            background: #D32D09;
+        }
+
+        .ribbon-horizontal {
+            width: 100%;
+            height: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+
+        .ribbon-vertical {
+            height: 100%;
+            width: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        /* Nœud doré au centre */
+        .golden-bow {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #FFD700, #FFC107);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        /* Texte cadeau avec défilement */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 800px;
+            height: 800px; /* Limite la hauteur pour activer le défilement */
+            overflow-y: auto; /* Active le défilement vertical */
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            /*animation: scrollContent 8s linear infinite; /* Animation de défilement */
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #d9455f;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Animation de défilement */
+        @keyframes scrollContent {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="gift-wrap">
+        <!-- Ruban horizontal et vertical -->
+        <div class="ribbon-horizontal"></div>
+        <div class="ribbon-vertical"></div>
+        
+        <!-- Nœud doré au centre comme bouton -->
+        <div class="golden-bow" onclick="openGift()">🎀</div>
+    </div>
+    <div class="container">
+        <h1>À Lina, pour ses 20 ans</h1>
+        <p>
+            Ma chère Lina,<br><br>
+            Aujourd’hui, tu as 20 ans (enfin ! 😂), et pour célébrer ce jour si précieux, celui de la naissance de ma bien-aimée, je voudrais t’écrire quelques mots qui me tiennent à cœur depuis un moment.
+        </p>
+        <p>
+            Notre rencontre m’a semblé être une évidence : cette complicité naturelle, cette familiarité si réconfortante, ce temps qui passe sans que l’on y prête attention, et cette absence totale de gêne… tout cela me fait croire que je t’ai toujours connue. Je ne sais pas pour toi, mais imaginer un futur sans toi me paraît inconcevable.
+        </p>
+        <p>
+            La beauté de ta chevelure dont tu prends si bien soin, ce corps dont Dieu t’a fait le cadeau, ton intelligence et ta vivacité d’esprit, les valeurs et principes que tu incarnes, et cette tendresse dans tes paroles (même s’il reste encore un peu de progrès à faire de ce côté-là 😆)… Tout cela montre à quel point tu es la femme dont beaucoup rêveraient d’avoir à leurs côtés.
+        </p>
+        <p>
+            Le bien-être que je ressens en te voyant sourire… Ce sourire-là, si sincère, envahit mes pensées et me fait oublier toute notion de temps et d’espace. Il me donne l’impression d’avoir accompli tout ce qui compte dans la vie. Un geste pourtant si simple en apparence, mais qui signifie tant pour moi qu’il m’est impossible de le décrire pleinement avec des mots.
+        </p>
+        <p>
+            J’ai la chance, al hamdoulilah, de t’avoir trouvée, et je ferai tout – je dis bien TOUT – pour te garder près de moi. Nous avons encore tant de choses à vivre ensemble, et j’espère, inchaAllah, les partager toutes avec toi.
+        </p>
+        <p>
+            Bon, il faut que je m’arrête, sinon je vais finir par écrire un roman. Tout ce que je veux que tu saches, c’est que tu comptes énormément pour moi, et que ta seule présence fait de moi un homme meilleur. Et ça, c’est le véritable graal.
+        </p>
+        <p class="signature">Avec tout mon amour, Ton reveu distingué</p>
+    </div>
+
+    <script>
+        function openGift() {
+            // Faire disparaître le papier cadeau et le ruban
+            const giftWrap = document.querySelector('.gift-wrap');
+            const container = document.querySelector('.container');
+
+            giftWrap.style.opacity = '0';
+            setTimeout(() => {
+                giftWrap.style.display = 'none';
+                // Afficher le texte avec défilement
+                container.style.visibility = 'visible';
+                container.style.opacity = '1';
+                container.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
